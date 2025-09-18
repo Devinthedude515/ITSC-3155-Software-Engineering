@@ -12,20 +12,9 @@ class CheckingAccount(BankAccount):
         self.__account_number = account_number
         self.__transfer_limit = transfer_limit
 
-        #create method to withdraw from account if limit is not reached
-        def withdraw(self, amount):
-            while True:
-                if amount is None:
-                    amount = float(input("Enter withdrawal amount: "))
-        #create method to discern if user has enough to withdraw
-        if 0 <= amount <= self.overdraft_limit:
-            if self.balance - amount >= -self.__transfer_limit:
-                self._balance -= amount
-                print(f"Withdrawal of ${amount:.2f} successfully!")
-                print(f"New balance of account {self.name} is: ${self.balance:.2f}")
-            else:
-                print("Transaction cancelled! Withdrawal limit reached.")
-        else:
-            print("Transaction cancelled! Withdrawal limit reached.")
-        #prompt user to enter again
-        amount = float(input("Enter withdrawal amount: "))
+    #create method to check that amount is within limit
+    def transaction_limit(self, amount):
+        while not (0 < amount <= self.__transfer_limit):
+            print(f"Invalid transfer amount. Please try again")
+            amount = float(input("Enter amount $(0 - 300): "))
+        return amount
