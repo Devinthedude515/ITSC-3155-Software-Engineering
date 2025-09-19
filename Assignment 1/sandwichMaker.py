@@ -81,7 +81,7 @@ class SandwichMachine:
         for item in order_ingredients:
             self.machine_resources[item] -= order_ingredients[item]
 
-#Make an instance of the Sandwsich class
+#Make an instance of the Sandwich class
 machine = SandwichMachine(resources)
 
 #prompt the user for what size sandwich they want small, medium, or large
